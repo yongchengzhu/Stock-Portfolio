@@ -1,15 +1,50 @@
 //------------------------------------------------------------------------------------------------
 // External Dependencies
 //------------------------------------------------------------------------------------------------
-const ExtractJwt  = require('passport-jwt').ExtractJwt;
-const JwtStrategy = require('passport-jwt').Strategy;
-const passport    = require('passport');
+const LocalStrategy = require('passport-local');
+const ExtractJwt    = require('passport-jwt').ExtractJwt;
+const JwtStrategy   = require('passport-jwt').Strategy;
+const passport      = require('passport');
 
 //------------------------------------------------------------------------------------------------
 // Internal Dependencies
 //------------------------------------------------------------------------------------------------
 const User = require('../models/user');
 const config = require('../config');
+
+//------------------------------------------------------------------------------------------------
+// Local Strategy
+//------------------------------------------------------------------------------------------------
+
+// 
+// localOptions:
+//   Tells Local Strategy which property contains the username. (Password is handled automatically)
+// 
+const localOptions = { usernameField: 'email' }
+
+// 
+// localLogin:
+//   A strategy that checks if the login email exist in our database. If it does, then it calls
+//   a bcrypt method inside of User model to compare the given password with the password stored
+//   in the database. If it is the same, then tell passport to let this user through.
+// 
+const localLogin = new LocalStrategy(localOptions, function(email, password, done) {
+  User.findOne({ email: email }, function(err, user) {
+    if (err) { return done(err); }
+    if (!user) { return done(null, false); }
+
+    user.comparePassword(password, function(err, isMatch) {
+      if (err) { return done(err); }
+      if (!isMatch) { return done(null, false); }
+
+      return done(null, user);
+    });
+  });
+});
+
+//------------------------------------------------------------------------------------------------
+// JWT Strategy
+//------------------------------------------------------------------------------------------------
 
 // 
 // jwtOptions:
@@ -39,5 +74,8 @@ const jwtLogin = new JwtStrategy(jwtOptions, function(payload, done) {
   });
 });
 
-// Tell passport to use JWT Strategy.
+//------------------------------------------------------------------------------------------------
+// Passport Setup
+//------------------------------------------------------------------------------------------------
 passport.use(jwtLogin);
+passport.use(localLogin);

@@ -54,3 +54,12 @@ exports.signup = function(req, res, next) {
     });
   });
 }
+
+// 
+// Signin Callback:
+//   If user signs in and Local Strategy authorizes the user to get pass, then send jwt token
+//   back as a response.
+// 
+exports.signin = function(req, res, next) {
+  res.send({ token: tokenForUser(req.user) });
+}
