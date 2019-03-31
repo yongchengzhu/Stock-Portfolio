@@ -12,9 +12,19 @@ export const signup = ({ name, email, password }, callback) => {
       });
 
       dispatch({ type: AUTH_USER, payload: response.data.token });
+      localStorage.setItem('token', response.data.token);
       callback();
     } catch (e) {
       dispatch({ type: AUTH_ERR, payload: 'Email is in use.' });
     }
   }
 };
+
+export const signout = () => {
+  localStorage.removeItem('token');
+  
+  return {
+    type: AUTH_USER,
+    payload: ''
+  }
+}
