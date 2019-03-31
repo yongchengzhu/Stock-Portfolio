@@ -2,6 +2,7 @@
 // External Dependencies
 //------------------------------------------------------------------------------------------------
 const bodyParser = require('body-parser');
+const mongoose   = require('mongoose');
 const express    = require('express');
 const morgan     = require('morgan')
 const http       = require('http');
@@ -10,6 +11,15 @@ const http       = require('http');
 // Internal Dependencies
 //------------------------------------------------------------------------------------------------
 const router = require('./router');
+
+//------------------------------------------------------------------------------------------------
+// Database Setup
+//------------------------------------------------------------------------------------------------
+
+mongoose.connect('mongodb://localhost:stock/stock', { useNewUrlParser: true });
+
+// Fix deprecation warnings.
+mongoose.set('useCreateIndex', true);
 
 //------------------------------------------------------------------------------------------------
 // App Setup
