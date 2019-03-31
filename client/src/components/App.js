@@ -5,6 +5,7 @@ import Home from './Home';
 import Signup from './auth/Signup';
 import Portfolio from './stock/Portfolio';
 import Signout from './auth/Signout';
+import Signin from './auth/Signin';
 
 class App extends React.Component {
   render() {
@@ -14,6 +15,7 @@ class App extends React.Component {
           <Header />
           <Route path="/" component={Home} exact />
           <Route path="/signup" component={Signup} exact />
+          <Route path="/signin" component={Signin} exact />
           <Route path="/signout" component={Signout} exact />
           <Route path="/portfolio" component={Portfolio} exact />
         </div>
