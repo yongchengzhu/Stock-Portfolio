@@ -7,7 +7,9 @@ import { signup } from '../../actions';
 
 class Signup extends React.Component {
   onSubmit = (formProps) => {
-    this.props.signup(formProps);
+    this.props.signup(formProps, () => {
+      this.props.history.push('/portfolio');
+    });
   };
 
   render() {
