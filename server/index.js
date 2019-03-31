@@ -6,6 +6,8 @@ const mongoose   = require('mongoose');
 const express    = require('express');
 const morgan     = require('morgan')
 const http       = require('http');
+const cors       = require('cors');
+
 
 //------------------------------------------------------------------------------------------------
 // Internal Dependencies
@@ -27,6 +29,7 @@ mongoose.set('useCreateIndex', true);
 
 const app = express();
 
+app.use(cors());
 app.use(morgan('combined'));
 app.use(bodyParser.json({ type: '*/*' }));
 
