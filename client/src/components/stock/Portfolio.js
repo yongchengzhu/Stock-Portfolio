@@ -2,11 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import requireAuth from '../requireAuth';
-import { fetchStocks } from '../../actions';
+import { fetchStocks, fetchBalance } from '../../actions';
 
 class Portfolio extends React.Component {
   componentDidMount() {
     this.props.fetchStocks();
+    this.props.fetchBalance();
   }
 
   renderStocks() {
@@ -30,7 +31,10 @@ class Portfolio extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { stocks: Object.values(state.stocks) }
+  return { 
+    stocks: Object.values(state.stocks),
+    balance: state.user.balance
+  }
 }
 
-export default connect(mapStateToProps, { fetchStocks })(requireAuth(Portfolio));
+export default connect(mapStateToProps, { fetchStocks, fetchBalance })(requireAuth(Portfolio));
