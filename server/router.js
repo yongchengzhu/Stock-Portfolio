@@ -1,9 +1,14 @@
 //------------------------------------------------------------------------------------------------
 // External Dependencies
 //------------------------------------------------------------------------------------------------
+const passport        = require('passport');
+
+//------------------------------------------------------------------------------------------------
+// Internal Dependencies
+//------------------------------------------------------------------------------------------------
 const Authentication  = require('./controllers/authentication');
 const passportService = require('./services/passport');
-const passport        = require('passport');
+const Stock           = require('./controllers/stock');
 
 //------------------------------------------------------------------------------------------------
 // Middlewares
@@ -24,9 +29,12 @@ module.exports = function(app) {
   });
 
   app.post('/signin', requireSignin, Authentication.signin);
+  
   app.post('/signup', Authentication.signup);
 
   app.get('/balance', requireAuth, function(req, res) {
     res.send({ balance: req.user.balance });
   });
+
+  app.post('/buy', requireAuth, Stock.buy);
 }

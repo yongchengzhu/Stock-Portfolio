@@ -1,15 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 import requireAuth from '../requireAuth';
-import { fetchStocks, fetchBalance } from '../../actions';
+import BuyForm from './BuyForm';
+import OwnedStocks from './OwnedStocks';
 
 class Portfolio extends React.Component {
-  componentDidMount() {
-    this.props.fetchStocks();
-    this.props.fetchBalance();
-  }
-
   renderStocks() {
     return this.props.stocks.map((stock) => {
       return (
@@ -22,19 +17,16 @@ class Portfolio extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Portfolio Page</h1>
-        {this.renderStocks()}
+      <div className="ui grid">
+        <div className="eight wide column">
+          <OwnedStocks />
+        </div>
+        <div className="eight wide column">
+          <BuyForm />
+        </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return { 
-    stocks: Object.values(state.stocks),
-    balance: state.user.balance
-  }
-}
-
-export default connect(mapStateToProps, { fetchStocks, fetchBalance })(requireAuth(Portfolio));
+export default requireAuth(Portfolio);
