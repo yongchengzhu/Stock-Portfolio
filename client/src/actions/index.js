@@ -1,6 +1,6 @@
 import server from '../apis/server';
 import iex from '../apis/iex';
-import { AUTH_USER, AUTH_ERR, FETCH_BALANCE, FETCH_OWNED, BUY_STOCK, BUY_ERR } from './types';
+import { AUTH_USER, AUTH_ERR, FETCH_TRANSACTIONS, FETCH_BALANCE, FETCH_OWNED, BUY_STOCK, BUY_ERR } from './types';
 
 //------------------------------------------------------------------------------------------------
 // Authentication Actions
@@ -56,6 +56,16 @@ export const signout = () => {
 //------------------------------------------------------------------------------------------------
 // User Actions
 //------------------------------------------------------------------------------------------------
+
+export const fetchTransactions = () => {
+  return async (dispatch, getState) => {
+    const { authenticated } = getState().auth;
+
+    const response = await server.get('/transactions', { headers: { "authorization":  authenticated } });
+    
+    dispatch({ type: FETCH_TRANSACTIONS, payload: response.data })
+  }
+}
 
 export const fetchBalance = () => {
   return async (dispatch, getState) => {

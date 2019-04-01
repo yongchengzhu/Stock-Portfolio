@@ -1,13 +1,17 @@
-import { FETCH_BALANCE, FETCH_OWNED, BUY_STOCK, BUY_ERR } from '../actions/types';
+import { FETCH_TRANSACTIONS, FETCH_BALANCE, FETCH_OWNED, BUY_STOCK, BUY_ERR } from '../actions/types';
 
 const INITIAL_STATE = {
   balance: null,
   errorMessage: '',
-  owned: {}
+  owned: {},
+  transactions: []
 }
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case FETCH_TRANSACTIONS:
+      return { ...state, transactions: action.payload.transactions }
+
     case FETCH_BALANCE:
       return { ...state, balance: action.payload.balance }
 

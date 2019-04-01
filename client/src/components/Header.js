@@ -10,6 +10,7 @@ class Header extends React.Component {
       return (
         <div>
           <Link to="/portfolio">Portfolio</Link>
+          <Link to="/transactions">Transactions</Link>
           <Link to="/signout">Sign Out</Link>
         </div>
       );

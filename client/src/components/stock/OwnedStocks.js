@@ -28,7 +28,7 @@ class OwnedStocks extends React.Component {
 
     return (
       <div>
-        <h2>Portfolio {formatter.format(totalWorth)}</h2>
+        <h2>Portfolio ({formatter.format(totalWorth)})</h2>
         {this.renderOwned()}
       </div>
     );

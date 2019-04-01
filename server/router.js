@@ -32,6 +32,10 @@ module.exports = function(app) {
   
   app.post('/signup', Authentication.signup);
 
+  app.get('/transactions', requireAuth, function(req, res) {
+    res.send({ transactions: req.user.transactions });
+  })
+
   app.get('/balance', requireAuth, function(req, res) {
     res.send({ balance: req.user.balance });
   });

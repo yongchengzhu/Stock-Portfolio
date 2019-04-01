@@ -4,6 +4,7 @@ import Header from './Header';
 import Home from './Home';
 import Signup from './auth/Signup';
 import Portfolio from './stock/Portfolio';
+import Transactions from './stock/Transactions';
 import Signout from './auth/Signout';
 import Signin from './auth/Signin';
 
@@ -18,6 +19,7 @@ class App extends React.Component {
           <Route path="/signin" component={Signin} exact />
           <Route path="/signout" component={Signout} exact />
           <Route path="/portfolio" component={Portfolio} exact />
+          <Route path="/transactions" component={Transactions} exact />
         </div>
       </BrowserRouter>
     );
