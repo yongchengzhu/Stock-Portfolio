@@ -6,3 +6,5 @@ export const FETCH_BALANCE = 'fetch_balance';
 export const FETCH_OWNED = 'fetch_owned';
 export const BUY_STOCK = 'buy_stock';
 export const BUY_ERR = 'buy_err';
+
+export const FETCH_BATCH = 'fetch_batch';

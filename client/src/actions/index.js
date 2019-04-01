@@ -1,6 +1,6 @@
 import server from '../apis/server';
 import iex from '../apis/iex';
-import { AUTH_USER, AUTH_ERR, FETCH_TRANSACTIONS, FETCH_BALANCE, FETCH_OWNED, BUY_STOCK, BUY_ERR } from './types';
+import { AUTH_USER, AUTH_ERR, FETCH_TRANSACTIONS, FETCH_BALANCE, FETCH_OWNED, BUY_STOCK, BUY_ERR, FETCH_BATCH } from './types';
 
 //------------------------------------------------------------------------------------------------
 // Authentication Actions
@@ -103,5 +103,17 @@ export const buyStock = ({ ticker, quantity }) => {
       
       dispatch({ type: BUY_STOCK, payload: serverResponse.data })
     }
+  }
+}
+
+//------------------------------------------------------------------------------------------------
+// Stock Actions
+//------------------------------------------------------------------------------------------------
+
+export const fetchBatch = (batch) => {
+  return async (dispatch) => {
+    const response = await iex.get(`/stock/market/batch?symbols=${batch}&types=quote`);
+
+    dispatch({ type: FETCH_BATCH, payload: response.data })
   }
 }
