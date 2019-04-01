@@ -41,3 +41,19 @@ exports.buy = function (req, res, next) {
 
   res.send({ balance: req.user.balance, owned: req.user.owned });
 }
+
+exports.updateOwned = function (req, res, next) {
+  let newUpdates = req.user;
+
+  // Update owned
+  for (let keys in newUpdates.owned) {
+    newUpdates.owned[keys].value = req.body[keys.toUpperCase()].quote.latestPrice * newUpdates.owned[keys].shares;
+  }
+
+  // Save the updates
+  User.findByIdAndUpdate(req.user._id, newUpdates, function(err, foundUser) {
+    if (err) { return next(err); }
+  });
+
+  res.send({owned: req.user.owned});
+}

@@ -9,9 +9,9 @@ class Transactions extends React.Component {
   }
 
   renderTransactions() {
-    return this.props.transactions.map((stock) => {
+    return this.props.transactions.map((stock, index) => {
       return (
-        <div className="item" key={stock.symbol}>
+        <div className="item" key={index}>
           {stock.activity} {stock.symbol} - {stock.shares} @ {stock.at}
         </div>
       );

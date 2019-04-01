@@ -45,4 +45,6 @@ module.exports = function(app) {
   })
 
   app.post('/buy', requireAuth, Stock.buy);
+
+  app.post('/update_owned', requireAuth, Stock.updateOwned);
 }

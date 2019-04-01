@@ -19,6 +19,7 @@ class OwnedStocks extends React.Component {
 
       if (batch.length > 0) {
         this.props.fetchBatch(batch);
+        this.props.fetchOwned();
       }
     }, 2000);
   }

@@ -80,7 +80,7 @@ export const fetchBalance = () => {
 export const fetchOwned = () => {
   return async (dispatch, getState) => {
     const { authenticated } = getState().auth;
-
+    
     const response = await server.get('/owned', { headers: { "authorization":  authenticated } });
   
     dispatch({ type: FETCH_OWNED, payload: response.data })
@@ -111,9 +111,12 @@ export const buyStock = ({ ticker, quantity }) => {
 //------------------------------------------------------------------------------------------------
 
 export const fetchBatch = (batch) => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
     const response = await iex.get(`/stock/market/batch?symbols=${batch}&types=quote`);
-
+    
+    const { authenticated } = getState().auth;
+    await server.post('/update_owned', response.data, { headers: { "authorization":  authenticated } })
+    
     dispatch({ type: FETCH_BATCH, payload: response.data })
   }
 }
