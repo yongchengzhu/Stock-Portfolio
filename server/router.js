@@ -36,5 +36,9 @@ module.exports = function(app) {
     res.send({ balance: req.user.balance });
   });
 
+  app.get('/owned', requireAuth, function(req,res) {
+    res.send({ owned: req.user.owned });
+  })
+
   app.post('/buy', requireAuth, Stock.buy);
 }

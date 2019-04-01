@@ -1,6 +1,6 @@
 import server from '../apis/server';
 import iex from '../apis/iex';
-import { AUTH_USER, AUTH_ERR, FETCH_BALANCE, BUY_STOCK, BUY_ERR } from './types';
+import { AUTH_USER, AUTH_ERR, FETCH_BALANCE, FETCH_OWNED, BUY_STOCK, BUY_ERR } from './types';
 
 //------------------------------------------------------------------------------------------------
 // Authentication Actions
@@ -63,13 +63,19 @@ export const fetchBalance = () => {
 
     const response = await server.get('/balance', { headers: { "authorization":  authenticated } });
 
-    dispatch({ type: FETCH_BALANCE, payload: response.data.balance })
+    dispatch({ type: FETCH_BALANCE, payload: response.data })
   }
 }
 
-//------------------------------------------------------------------------------------------------
-// User Actions
-//------------------------------------------------------------------------------------------------
+export const fetchOwned = () => {
+  return async (dispatch, getState) => {
+    const { authenticated } = getState().auth;
+
+    const response = await server.get('/owned', { headers: { "authorization":  authenticated } });
+  
+    dispatch({ type: FETCH_OWNED, payload: response.data })
+  }
+}
 
 export const buyStock = ({ ticker, quantity }) => {
   return async (dispatch, getState) => {
@@ -85,7 +91,7 @@ export const buyStock = ({ ticker, quantity }) => {
       const { authenticated } = getState().auth;
       const serverResponse = await server.post('/buy', { ticker: ticker, quantity: quantity, price: price }, { headers: { "authorization":  authenticated } });
       
-      dispatch({ type: BUY_STOCK, payload: serverResponse.data.balance })
+      dispatch({ type: BUY_STOCK, payload: serverResponse.data })
     }
   }
 }

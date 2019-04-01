@@ -14,7 +14,9 @@ const userSchema = new Schema({
   name: String,
   email: { type: String, unique: true, lowercase: true },
   password: String,
-  balance: { type: Number, default: 5000.00 }
+  balance: { type: Number, default: 5000.00 },
+  owned: { type: Object, default: {} },
+  transactions: { type: Array, default: [] }
 });
 
 //------------------------------------------------------------------------------------------------

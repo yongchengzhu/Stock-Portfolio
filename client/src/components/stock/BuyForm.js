@@ -15,7 +15,9 @@ class BuyForm extends React.Component {
   }
 
   render() {
-    console.log(this.props.user);
+    // if (this.props.user.owned) {
+    //   console.log(Object.values(this.props.user.owned));
+    // }
     const formatter = new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
@@ -58,4 +60,3 @@ export default compose (
   connect(mapStateToProps, { fetchBalance, buyStock }),
   reduxForm({ form: 'buy' })
 )(BuyForm);
-// export default connect(mapStateToProps, { fetchBalance })(BuyForm);
