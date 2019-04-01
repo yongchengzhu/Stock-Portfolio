@@ -46,7 +46,7 @@ class OwnedStocks extends React.Component {
       return (
         <div className="item" key={stock.symbol}>
           <div style={{color: color}} className="right floated content">{formatter.format(stock.value)}</div>
-          {stock.symbol.toUpperCase()} - {stock.shares} Shares
+          <span style={{color: color}}>{stock.symbol.toUpperCase()}</span> - {stock.shares} Shares
         </div>
       );
     });
