@@ -2,8 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-// import '../styles/Header.css';
-
 class Header extends React.Component {
   renderLinks() {
     if (this.props.authenticated) {

@@ -19,7 +19,7 @@ class Signin extends React.Component {
       <form className="ui form" onSubmit={handleSubmit(this.onSubmit)}>      
         <div className="field">
           <label>Email</label>
-          <Field name="email" type="text" component="input" autoComplete="off" />
+          <Field name="email" type="email" component="input" autoComplete="off" />
         </div>
         <div className="field">
           <label>Password</label>
