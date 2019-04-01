@@ -28,7 +28,7 @@ class OwnedStocks extends React.Component {
     );
   }
 }
-
+// 
 const mapStateToProps = (state) => {
   return {
     owned: Object.values(state.user.owned)
