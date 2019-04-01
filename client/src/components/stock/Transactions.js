@@ -21,7 +21,7 @@ class Transactions extends React.Component {
   render() {
     return (
       <div>
-        <h2>Transactions</h2>
+        <h3>Transactions</h3>
         {this.renderTransactions()}
       </div>
     );
