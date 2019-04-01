@@ -12,7 +12,7 @@ class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
-        <div>
+        <div className="ui container">
           <Header />
           <Route path="/" component={Home} exact />
           <Route path="/signup" component={Signup} exact />

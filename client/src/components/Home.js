@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Home = () => {
-  return <h3>Wecome to Stock Portfolio!</h3>;
+  return <h2 className="ui header">Wecome to Stock Portfolio!</h2>;
 }
 
 export default Home;

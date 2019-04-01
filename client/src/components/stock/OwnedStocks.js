@@ -12,8 +12,9 @@ class OwnedStocks extends React.Component {
   renderOwned() {
     return this.props.owned.map((stock) => {
       return (
-        <div key={stock.symbol}>
-          {stock.symbol} {stock.shares} {formatter.format(stock.value)}
+        <div className="item" key={stock.symbol}>
+          <div className="right floated content">{formatter.format(stock.value)}</div>
+          {stock.symbol.toUpperCase()} - {stock.shares} Shares
         </div>
       );
     });
@@ -28,8 +29,10 @@ class OwnedStocks extends React.Component {
 
     return (
       <div>
-        <h2>Portfolio ({formatter.format(totalWorth)})</h2>
-        {this.renderOwned()}
+        <h2 className="ui header">Portfolio ({formatter.format(totalWorth)})</h2>
+        <div className="ui relaxed divided list">
+          {this.renderOwned()}
+        </div>
       </div>
     );
   }

@@ -16,23 +16,23 @@ class Signup extends React.Component {
     const { handleSubmit } = this.props;
 
     return (
-      <form onSubmit={handleSubmit(this.onSubmit)}>
-        <fieldset>
+      <form className="ui form" onSubmit={handleSubmit(this.onSubmit)}>
+        <div className="field">
           <label>Name</label>
           <Field name="name" type="text" component="input" autoComplete="off" />
-        </fieldset>        
-        <fieldset>
+        </div>        
+        <div className="field">
           <label>Email</label>
           <Field name="email" type="text" component="input" autoComplete="off" />
-        </fieldset>
-        <fieldset>
+        </div>
+        <div className="field">
           <label>Password</label>
           <Field name="password" type="password"  component="input" autoComplete="off" />
-        </fieldset>
+        </div>
         <div>
           {this.props.errorMessage}
         </div>
-        <button>Sign Up</button>
+        <button className="ui button">Sign Up</button>
       </form>
     );
   }

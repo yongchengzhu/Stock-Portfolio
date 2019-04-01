@@ -20,22 +20,22 @@ class BuyForm extends React.Component {
 
     return (
       <div>
-        Cash - {formatter.format(this.props.user.balance)}
-        <form onSubmit={handleSubmit(this.onSubmit)}>
-          <fieldset>
+        <h2 className="ui header">Cash - {formatter.format(this.props.user.balance)}</h2>
+        <form className="ui form" onSubmit={handleSubmit(this.onSubmit)}>
+          <div className="field">
             <label>
               Ticker
             </label>
             <Field name="ticker" type="text" component="input" autoComplete="off" />
-          </fieldset>
-          <fieldset>
+          </div>
+          <div className="field">
             <label>
               Quantity
               <Field name="quantity" type="number" min="0" component="input" autoComplete="off" />
             </label>
-          </fieldset>
+          </div>
           {this.props.user.errorMessage}
-          <button>Buy</button>
+          <button className="ui button">Buy</button>
         </form>
       </div>
     );

@@ -11,7 +11,7 @@ class Transactions extends React.Component {
   renderTransactions() {
     return this.props.transactions.map((stock) => {
       return (
-        <div key={stock.symbol}>
+        <div className="item" key={stock.symbol}>
           {stock.activity} {stock.symbol} - {stock.shares} @ {stock.at}
         </div>
       );
@@ -20,9 +20,13 @@ class Transactions extends React.Component {
 
   render() {
     return (
-      <div>
-        <h3>Transactions</h3>
-        {this.renderTransactions()}
+      <div className="ui grid">
+        <div className="eight wide column">
+          <h2 className="ui header">Transactions</h2>
+          <div className="ui relaxed divided list">
+            {this.renderTransactions()}
+          </div>
+        </div>
       </div>
     );
   }
