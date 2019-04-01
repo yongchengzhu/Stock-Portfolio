@@ -5,6 +5,7 @@ const User = require('../models/user');
 
 exports.buy = function (req, res, next) {
   let newUpdates = req.user;
+  req.body.ticker = req.body.ticker.toUpperCase();
 
   // Update Balance
   newUpdates.balance = req.user.balance - (req.body.quantity * req.body.price);
