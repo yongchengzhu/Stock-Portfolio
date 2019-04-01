@@ -4,6 +4,7 @@ import { reduxForm, Field } from 'redux-form';
 import { compose } from 'redux';
 
 import { fetchBalance, buyStock } from '../../actions';
+import { formatter } from '../../utilities';
 
 class BuyForm extends React.Component {
   componentDidMount() {
@@ -15,15 +16,6 @@ class BuyForm extends React.Component {
   }
 
   render() {
-    // if (this.props.user.owned) {
-    //   console.log(Object.values(this.props.user.owned));
-    // }
-    const formatter = new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 2
-    });
-
     const { handleSubmit } = this.props;
 
     return (
