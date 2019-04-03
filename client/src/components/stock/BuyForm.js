@@ -31,7 +31,7 @@ class BuyForm extends React.Component {
           <div className="field">
             <label>
               Quantity
-              <Field name="quantity" type="number" min="0" component="input" autoComplete="off" />
+              <Field name="quantity" type="number" min="1" component="input" autoComplete="off" />
             </label>
           </div>
           {this.props.user.errorMessage}
