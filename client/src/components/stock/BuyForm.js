@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm, Field, SubmissionError } from 'redux-form';
 import { compose } from 'redux';
 
 import { fetchBalance, buyStock } from '../../actions';
@@ -17,7 +17,6 @@ class BuyForm extends React.Component {
 
   render() {
     const { handleSubmit } = this.props;
-
     return (
       <div>
         <h2 className="ui header">Cash - {formatter.format(this.props.user.balance)}</h2>
