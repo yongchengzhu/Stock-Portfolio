@@ -10,7 +10,7 @@ When user first visits the website, they have the option to sign up and sign in 
 
 
 
-# Sign Up
+## Sign Up
 
 User is prompted to up with *name*, *email*, and *password*. When the 'submit' button is clicked, user the signUp action-creator will be invoked and it will make a POST request to the backend server via `/signup`. If the user enters an email that's already been used, then it an error message will be prompted and prevent user from signing up. Otherwise, when the user has successfully signed up and the information will be saved inside of MongoDB. (Password will be hashed with a generated salt.) As a response, a JSON web token will be created (encoded with id, timestamp, and secret string.) and sent back to the client side. This token will be stored in two places: the browser's localStorage and inside the reducer.
 
