@@ -1,5 +1,7 @@
 # Stock Portfolio
 
+**Update 6/5/2019: ** We cannot make GET requests to `'/stock/aapl/price'` anymore. Hence, the code is updated so that when the user purchases a stock, a GET request is sent to `'/stock/aapl/quote'` to get the  *latestPrice* instead.
+
 This website is separated into five essential routes: Landing, Sign Up, Sign In, Portfolio, and Transactions.
 
 

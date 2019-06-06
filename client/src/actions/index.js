@@ -46,7 +46,7 @@ export const signin = ({ email, password }, callback) => {
 
 export const signout = () => {
   localStorage.removeItem('token');
-  
+
   return {
     type: AUTH_USER,
     payload: ''
@@ -62,7 +62,7 @@ export const fetchTransactions = () => {
     const { authenticated } = getState().auth;
 
     const response = await server.get('/transactions', { headers: { "authorization":  authenticated } });
-    
+
     dispatch({ type: FETCH_TRANSACTIONS, payload: response.data })
   }
 }
@@ -80,18 +80,18 @@ export const fetchBalance = () => {
 export const fetchOwned = () => {
   return async (dispatch, getState) => {
     const { authenticated } = getState().auth;
-    
+
     const response = await server.get('/owned', { headers: { "authorization":  authenticated } });
-  
+
     dispatch({ type: FETCH_OWNED, payload: response.data })
   }
 }
 
 export const buyStock = ({ ticker, quantity }) => {
   return async (dispatch, getState) => {
-    const iexResponse = await iex.get(`/stock/${ticker}/price`);
+    const iexResponse = await iex.get(`/stock/${ticker}/quote`);
 
-    const price = iexResponse.data;
+    const price = iexResponse.data.latestPrice;
     const cost = price * quantity;
     const balance = getState().user.balance;
 
@@ -100,7 +100,7 @@ export const buyStock = ({ ticker, quantity }) => {
     } else {
       const { authenticated } = getState().auth;
       const serverResponse = await server.post('/buy', { ticker: ticker, quantity: quantity, price: price }, { headers: { "authorization":  authenticated } });
-      
+
       dispatch({ type: BUY_STOCK, payload: serverResponse.data })
     }
   }
@@ -113,10 +113,10 @@ export const buyStock = ({ ticker, quantity }) => {
 export const fetchBatch = (batch) => {
   return async (dispatch, getState) => {
     const response = await iex.get(`/stock/market/batch?symbols=${batch}&types=quote`);
-    
+
     const { authenticated } = getState().auth;
     await server.post('/update_owned', response.data, { headers: { "authorization":  authenticated } })
-    
+
     dispatch({ type: FETCH_BATCH, payload: response.data })
   }
 }
