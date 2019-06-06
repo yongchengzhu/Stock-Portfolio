@@ -13,12 +13,12 @@ const cors       = require('cors');
 // Internal Dependencies
 //------------------------------------------------------------------------------------------------
 const router = require('./router');
+const keys   = require('./config/keys.js');
 
 //------------------------------------------------------------------------------------------------
 // Database Setup
 //------------------------------------------------------------------------------------------------
-
-mongoose.connect('mongodb://localhost:stock/stock', { useNewUrlParser: true });
+mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
 
 // Fix deprecation warnings.
 mongoose.set('useCreateIndex', true);

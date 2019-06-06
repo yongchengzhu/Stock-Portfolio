@@ -1,8 +1,18 @@
 # Stock Portfolio
 
-**Update 6/5/2019: ** We cannot make GET requests to `'/stock/aapl/price'` anymore. Hence, the code is updated so that when the user purchases a stock, a GET request is sent to `'/stock/aapl/quote'` to get the  *latestPrice* instead.
+**Update 6/5/2019:** We cannot make GET requests to `'/stock/aapl/price'` anymore. Hence, the code is updated so that when the user purchases a stock, a GET request is sent to `'/stock/aapl/quote'` to get the  *latestPrice* instead.
 
-This website is separated into five essential routes: Landing, Sign Up, Sign In, Portfolio, and Transactions.
+
+
+This is a web-based application that stimulates a live stock market exchange situation using the IEX API. When a user first visits the application, the user is required to register a new account and which then gets redirected to `/portfolio` route. Here, the user have an initial balance of $5000.00 and is allowed to purchase any stock by entering their eligible symbol and the amount of shares into the purchase form and click BUY. The performance of the stock is shown on the left panel, and the history of purchases can be reviewed via `/transactions`.
+
+
+
+The backend server is built with ExpressJS for route handling and JWT authentication, as well as MongoDB for data storage. The frontend is built with React & Redux. The styling is done by Semantic-UI library.
+
+
+
+## 
 
 
 
