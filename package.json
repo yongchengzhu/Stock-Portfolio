@@ -9,8 +9,8 @@
   },
   "scripts": {
     "start": "node index.js",
-    "server": "nodemon",
     "client": "npm start --prefix client",
+    "server": "nodemon",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
