@@ -18,6 +18,8 @@ const keys   = require('./config/keys.js');
 //------------------------------------------------------------------------------------------------
 // Database Setup
 //------------------------------------------------------------------------------------------------
+console.log("mongoURI: ", keys.mongoURI);
+
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
 
 // Fix deprecation warnings.
