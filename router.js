@@ -24,12 +24,12 @@ const requireSignin = passport.authenticate('local', { session: false});
 //------------------------------------------------------------------------------------------------
 
 module.exports = function(app) {
-  app.get('/', requireAuth, function(req, res, next) {
-    res.send('Stock Portfolio server.');
-  });
+  // app.get('/', requireAuth, function(req, res, next) {
+  //   res.send('Stock Portfolio server.');
+  // });
 
   app.post('/signin', requireSignin, Authentication.signin);
-  
+
   app.post('/signup', Authentication.signup);
 
   app.get('/transactions', requireAuth, function(req, res) {
