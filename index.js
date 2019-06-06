@@ -41,6 +41,7 @@ router(app);
 // Production Setup
 //------------------------------------------------------------------------------------------------
 if (process.env.NODE_ENV === 'production') {
+  console.log('Loaded static from: client/build');
   app.use(express.static('client/build'));
 
   const path = require('path');
