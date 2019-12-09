@@ -89,10 +89,9 @@ export const fetchOwned = () => {
 
 export const buyStock = ({ ticker, quantity }) => {
   return async (dispatch, getState) => {
-    // const iexResponse = await iex.get(`/query?function=GLOBAL_QUOTE&symbol=MSFT&apikey=A86IFRDGA2JJDTAZ`);
     const iexResponse = await iex.get('/query', { params: {
       function: "GLOBAL_QUOTE",
-      symbol: "MSFT",
+      symbol: ticker,
       apikey: "A86IFRDGA2JJDTAZ"
     } });
   
@@ -117,8 +116,13 @@ export const buyStock = ({ ticker, quantity }) => {
 
 export const fetchBatch = (batch) => {
   return async (dispatch, getState) => {
-    const response = await iex.get(`/stock/market/batch?symbols=${batch}&types=quote`);
-
+    // const response = await iex.get(`/stock/market/batch?symbols=${batch}&types=quote`);
+    const response = await iex.get(`/query`, { params: {
+      function: "BATCH_STOCK_QUOTES",
+      apikey: "A86IFRDGA2JJDTAZ",
+      symbols: batch
+    } });
+    console.log(response.data);
     const { authenticated } = getState().auth;
     await server.post('/update_owned', response.data, { headers: { "authorization":  authenticated } })
 

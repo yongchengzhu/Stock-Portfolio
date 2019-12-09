@@ -1,6 +1,6 @@
 # Stock Portfolio
 
-**Update 12/8/2019:** Since IEX API is no longer free, the app is updated to use Alphavantage to fetch latest quotes instead.
+**Update 12/8/2019:** Since IEX API is no longer free, the app is updated to use Alphavantage to fetch latest quotes instead. However the downside is that Alphavantage only allows 5 calls per minute and 500 calls per day for the free plan.
 
 **Update 6/5/2019:** We cannot make GET requests to `'/stock/aapl/price'` anymore. Hence, the code is updated so that when the user purchases a stock, a GET request is sent to `'/stock/aapl/quote'` to get the  *latestPrice* instead.
 

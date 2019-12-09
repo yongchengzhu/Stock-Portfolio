@@ -9,19 +9,25 @@ class OwnedStocks extends React.Component {
     this.props.fetchOwned();
 
     // this.setInterval = setInterval(() => {
-    //   let batch = '';
-    //   for (let i = 0; i < this.props.owned.length; ++i) {
-    //     batch += this.props.owned[i].symbol;
-    //     if (i < this.props.owned.length-1) {
-    //       batch += ',';
-    //     }
-    //   }
+      // let batch = '';
+      // for (let i = 0; i < this.props.owned.length; ++i) {
+      //   batch += this.props.owned[i].symbol;
+      //   if (i < this.props.owned.length-1) {
+      //     batch += ',';
+      //   }
+      // }
 
-    //   if (batch.length > 0) {
-    //     this.props.fetchBatch(batch);
-    //     this.props.fetchOwned();
-    //   }
+      // if (batch.length > 0) {
+      //   this.props.fetchBatch(batch);
+      //   this.props.fetchOwned();
+      // }
     // }, 2000);
+  }
+
+  componentDidUpdate(prevProps) {
+    if(prevProps.owned !== this.props.owned) {
+      // console.log(this.props.owned);
+    }
   }
 
   // componentWillUnmount() {
@@ -54,7 +60,6 @@ class OwnedStocks extends React.Component {
   }
 
   render() {
-    // console.log(this.props.batch['AAPL']);
     let totalWorth = 0;
 
     for (let i = 0; i < this.props.owned.length; ++i) {
