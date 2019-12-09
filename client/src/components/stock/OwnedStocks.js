@@ -8,25 +8,25 @@ class OwnedStocks extends React.Component {
   componentDidMount() {
     this.props.fetchOwned();
 
-    this.setInterval = setInterval(() => {
-      let batch = '';
-      for (let i = 0; i < this.props.owned.length; ++i) {
-        batch += this.props.owned[i].symbol;
-        if (i < this.props.owned.length-1) {
-          batch += ',';
-        }
-      }
+    // this.setInterval = setInterval(() => {
+    //   let batch = '';
+    //   for (let i = 0; i < this.props.owned.length; ++i) {
+    //     batch += this.props.owned[i].symbol;
+    //     if (i < this.props.owned.length-1) {
+    //       batch += ',';
+    //     }
+    //   }
 
-      if (batch.length > 0) {
-        this.props.fetchBatch(batch);
-        this.props.fetchOwned();
-      }
-    }, 2000);
+    //   if (batch.length > 0) {
+    //     this.props.fetchBatch(batch);
+    //     this.props.fetchOwned();
+    //   }
+    // }, 2000);
   }
 
-  componentWillUnmount() {
-    clearInterval(this.setInterval);
-  }
+  // componentWillUnmount() {
+  //   clearInterval(this.setInterval);
+  // }
 
   renderOwned() {
     return this.props.owned.map((stock) => {

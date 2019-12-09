@@ -89,9 +89,14 @@ export const fetchOwned = () => {
 
 export const buyStock = ({ ticker, quantity }) => {
   return async (dispatch, getState) => {
-    const iexResponse = await iex.get(`/stock/${ticker}/quote`);
-
-    const price = iexResponse.data.latestPrice;
+    // const iexResponse = await iex.get(`/query?function=GLOBAL_QUOTE&symbol=MSFT&apikey=A86IFRDGA2JJDTAZ`);
+    const iexResponse = await iex.get('/query', { params: {
+      function: "GLOBAL_QUOTE",
+      symbol: "MSFT",
+      apikey: "A86IFRDGA2JJDTAZ"
+    } });
+  
+    const price = iexResponse.data["Global Quote"]["05. price"];
     const cost = price * quantity;
     const balance = getState().user.balance;
 
