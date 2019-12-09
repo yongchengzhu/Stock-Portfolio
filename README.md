@@ -16,7 +16,7 @@ The backend server is built with ExpressJS for route handling and JWT authentica
 
 The application is deployed into heroku:
 
-https://stormy-caverns-22476.herokuapp.com
+https://stockportf.herokuapp.com/
 
 
 
